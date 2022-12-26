@@ -9,7 +9,8 @@ services:
     healthCheckPath: /healthz
     startCommand: npm run start
     buildCommand: npm install
-    fromGroup: imgur-api
+    envVars:
+    - fromGroup: imgur-api
   - type: web
     name: image-manager
     env: static
