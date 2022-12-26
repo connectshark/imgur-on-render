@@ -20,6 +20,7 @@ services:
     envVars:
       - key: VITE_API_DOMAIN
         fromService:
+          type: web
           name: image-uploader
           property: host
     routes:
