@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: image-uploader
+    env: node
+    repo: https://github.com/connectshark/image-uploader.git
+    region: singapore
+    plan: free
+    branch: main
+    healthCheckPath: /healthz
+    startCommand: npm run start
+    buildCommand: npm install
+    envVarGroups:
+      - name: imgur-api
+  - type: web
+    name: image-manager
+    env: static
+    repo: https://github.com/connectshark/image-manager.git
+    buildCommand: npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_DOMAIN
+        fromService:
+          name: image-uploader
+          property: host
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
