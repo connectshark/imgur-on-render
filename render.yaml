@@ -10,7 +10,15 @@ services:
     startCommand: npm run start
     buildCommand: npm install
     envVars:
-    - fromGroup: imgur-api
+    # - fromGroup: imgur-api
+    - key: IMGUR_ALBUM_ID
+      sync: false
+    - key: IMGUR_CLIENT_ID
+      sync: false
+    - key: IMGUR_CLIENT_SECRET
+      sync: false
+    - key: IMGUR_REFRESH_TOKEN
+      sync: false
   - type: web
     name: image-manager
     env: static
